@@ -75,27 +75,9 @@ public class ManuscriptReviewStatusChangeHandler implements HandlerInterface<Man
     private void accept(Manuscript manuscript) throws HandlerException {
         // dspace review-item -a true
         try {
-            if(manuscript.dryadDataDOI != null) {
-                ApproveRejectReviewItem.reviewItemDOI(Boolean.TRUE, manuscript.dryadDataDOI);
-            } else {
-                ApproveRejectReviewItem.reviewItem(Boolean.TRUE, manuscript.manuscriptId);
-            }
+            ApproveRejectReviewItem.reviewManuscript(manuscript);
         } catch (ApproveRejectReviewItemException ex) {
             throw new HandlerException("Exception handling acceptance notice for manuscript " + manuscript.manuscriptId, ex);
         }
     }
-
-    private void reject(Manuscript manuscript) throws HandlerException {
-        // dspace review-item -a false
-        try {
-            if(manuscript.dryadDataDOI != null) {
-                ApproveRejectReviewItem.reviewItemDOI(Boolean.FALSE, manuscript.dryadDataDOI);
-            } else {
-                ApproveRejectReviewItem.reviewItem(Boolean.FALSE, manuscript.manuscriptId);
-            }
-        } catch (ApproveRejectReviewItemException ex) {
-            throw new HandlerException("Exception handling rejection notice for manuscript " + manuscript.manuscriptId, ex);
-        }
-    }
-
 }
