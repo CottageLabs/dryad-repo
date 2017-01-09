@@ -45,6 +45,7 @@
         <module>dryad-widgets</module>
         <module>journal-landing</module>
         <!--module>solr-load-tester</module-->
+        <module>dans</module>
 	</modules>
 
 
